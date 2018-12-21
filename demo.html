@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>region</title>
+  <style>
+    option:nth-child(1) {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <input type="text">
+  <button>setValue</button>
+  <button>getValue</button>
+  <button>setData</button>
+</div>
+<br>
+<div>
+  <select></select>
+  <select></select>
+  <select></select>
+</div>
+
+<script src="polyfill.js"></script>
+<script src="cascader.js"></script>
+<script src="china-area.js"></script>
+<script>
+
+  var elements = document.getElementsByTagName('select'),
+    btns = document.getElementsByTagName('button'),
+    input = document.getElementsByTagName('input')[0];
+
+  var picker = new Cascader({
+    elements: elements,
+    data: chinaAreaData,
+    initValue: ['广东省', '深圳市', '南山区'],
+    placeholder: ['省', '市', '区']
+  });
+
+  btns[0].onclick = function () {
+    picker.setValue(input.value.split(/-|,|，|\s+/));
+  };
+
+  btns[1].onclick = function () {
+    input.value = picker.getValue().label;
+  };
+
+</script>
+</body>
+</html>
